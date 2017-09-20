@@ -1,5 +1,6 @@
 package com.example.asus.turkcell;
 
+import android.os.Build;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -18,6 +19,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.view.WindowManager;
 import android.widget.TextView;
 
 public class Home extends AppCompatActivity {
@@ -39,6 +41,11 @@ public class Home extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         Log.d(TAG,"onCreate: Starting.");
         mSectionsPageAdapter = new SectionsPageAdapter(getSupportFragmentManager());
+
+
+
+
+
 
         mviewPager =(ViewPager)findViewById(R.id.container);
         setupViewPager(mviewPager);
