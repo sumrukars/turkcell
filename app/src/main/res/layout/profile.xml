@@ -1,108 +1,148 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
-    <ImageButton
-        android:id="@+id/imageButton3"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="16dp"
-        app:srcCompat="@drawable/settings"
-        android:background="@null"
-        android:scaleType="fitXY"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+
+android:layout_width="match_parent"
+android:layout_height="match_parent">
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/layout">
+
+
+    <ImageView
+        android:id="@+id/header_cover_image"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:scaleType="centerCrop"
+
+        android:src="@drawable/nav_menu_header_bg"
+        app:srcCompat="@drawable/nav_menu_header_bg"
         android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginRight="16dp"
-        android:layout_marginEnd="16dp" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
-    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/profile_image"
-        android:layout_width="96dp"
-        android:layout_height="96dp"
-        android:layout_marginLeft="145dp"
-        android:layout_marginTop="80dp"
-        android:src="@drawable/profile"
-        app:civ_border_color="#FF000000"
-        app:civ_border_width="2dp" />
+    <de.hdodenhof.circleimageview.CircleImageView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
 
-    <EditText
-        android:id="@+id/editText"
+        android:clickable="true"
+        app:civ_border_width="3dp"
+        app:civ_border_color="#FFFFFFFF"
+
+        android:id="@+id/profile"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_below="@+id/header_cover_image"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="-130dp"
+        android:elevation="5dp"
+        android:padding="20dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/man" />
+
+    <RelativeLayout
+        android:id="@+id/profile_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ebca0707"
+        android:elevation="4dp"
+        android:paddingBottom="24dp"
+        android:layout_below="@+id/header_cover_image"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+
+        <ImageView
+            android:id="@+id/edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="16dp"
+            android:clickable="true"
+
+            android:src="@drawable/settings" />
+
+        //profile name
+
+        //smth about profile
+
+        //smth about profile
+
+        <TextView
+            android:id="@+id/designation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/name"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:textColor="#fff"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="70dp"
+            android:text="sumru kars"
+            android:textColor="#fff"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="21dp"
+            android:layout_marginStart="21dp"
+            android:text="Takipçiler"
+            android:textSize="18dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/designation"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="21dp"
+            android:text="Takip Edilenler"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Oy Oranı"
+            android:textSize="18sp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignRight="@+id/edit"
+            android:layout_alignEnd="@+id/edit"
+            android:layout_marginRight="17dp"
+            android:layout_marginEnd="17dp" />
+
+
+
+    </RelativeLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/floatingActionButton5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:inputType="textMultiLine"
-        android:layout_below="@+id/profile_image"
-        android:layout_centerHorizontal="true" />
-
-    <ImageButton
-        android:id="@+id/imageButton4"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        app:srcCompat="@drawable/like"
-        android:background="@null"
-        android:scaleType="fitXY"
-        android:layout_marginRight="23dp"
-        android:layout_marginEnd="23dp"
-        android:layout_below="@+id/editText"
-        android:layout_toLeftOf="@+id/editText"
-        android:layout_toStartOf="@+id/editText" />
-
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_toEndOf="@+id/imageButton4"
-        android:layout_toRightOf="@+id/imageButton4"
-        android:text="TextView" />
-
-    <ImageButton
-        android:id="@+id/imageButton5"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        app:srcCompat="@drawable/star"
-        android:background="@null"
-        android:scaleType="fitXY"
-        android:layout_below="@+id/editText"
-        android:layout_alignLeft="@+id/profile_image"
-        android:layout_alignStart="@+id/profile_image" />
-
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_toLeftOf="@+id/imageButton6"
-        android:layout_toStartOf="@+id/imageButton6"
-        android:text="TextView" />
-
-    <ImageButton
-        android:id="@+id/imageButton6"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        app:srcCompat="@drawable/checked"
-        android:background="@null"
-        android:scaleType="fitXY"
-        android:layout_below="@+id/editText"
-        android:layout_alignRight="@+id/editText"
-        android:layout_alignEnd="@+id/editText" />
-
-    <TextView
-        android:id="@+id/textView9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        android:layout_centerVertical="true"
-        android:layout_alignRight="@+id/imageButton3"
-        android:layout_alignEnd="@+id/imageButton3" />
-
-
+        android:layout_marginLeft="320dp"
+        android:layout_marginTop="500dp"
+        android:clickable="true"
+        app:fabSize="mini"
+        app:srcCompat="@android:drawable/ic_input_add" />
 
 
 </RelativeLayout>
+</ScrollView>
