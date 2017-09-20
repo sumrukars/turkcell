@@ -7,6 +7,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -14,9 +15,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.firebase.ui.auth.AuthUI;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.auth.AuthResult;
 
 import java.util.Arrays;
 
@@ -26,9 +30,9 @@ import java.util.Arrays;
 public class MainActivity extends AppCompatActivity {
 
     TextView CreateAccount;
-    private Button SıgnIn;
-    private  TextView email;
-    private  TextView password;
+    private Button signIn;
+    private  TextView inputEmail;
+    private  TextView inputPassword;
 
     private static final int RC_SIGN_IN = 123;
     FirebaseDatabase dB;
@@ -53,8 +57,8 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         Toast.makeText(MainActivity.this,"OnClick",Toast.LENGTH_SHORT).show();
-                       Intent ıntent = new Intent(MainActivity.this,Home.class );
-                       startActivity(ıntent);
+                        Intent ıntent = new Intent(MainActivity.this,SignUp.class );
+                        startActivity(ıntent);
 
                         /*
                         Fragment frg = new Fragment();
@@ -93,33 +97,61 @@ public class MainActivity extends AppCompatActivity {
 
         dB =FirebaseDatabase.getInstance();
         mFirebaseAuth=FirebaseAuth.getInstance();
+
         mAuthStateListener=new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
-                if(user!=null)
-                {
-                    Toast.makeText(MainActivity.this, "Henüz Giriş Yapılmadı !!!", Toast.LENGTH_SHORT).show();
-                }
-                else
-                {
-                    /*
-                    startActivityForResult(
-                            AuthUI.getInstance()
-                                    .createSignInIntentBuilder()
-                                    .setIsSmartLockEnabled(false)
-                                    .setAvailableProviders(
-                                            Arrays.asList(new AuthUI.IdpConfig.Builder(AuthUI.EMAIL_PROVIDER).build(),
-                                                    new AuthUI.IdpConfig.Builder(AuthUI.PHONE_VERIFICATION_PROVIDER).build(),
-                                                    new AuthUI.IdpConfig.Builder(AuthUI.GOOGLE_PROVIDER).build(),
-                                                    new AuthUI.IdpConfig.Builder(AuthUI.FACEBOOK_PROVIDER).build(),
-                                                    new AuthUI.IdpConfig.Builder(AuthUI.TWITTER_PROVIDER).build()))
-                                    .build(),
-                            RC_SIGN_IN);
-                            */
-                }
+
             }
         };
+
+        inputEmail = (TextView) findViewById(R.id.email);
+        inputPassword = (TextView) findViewById(R.id.password);
+        signIn = (Button) findViewById(R.id.login);
+
+        signIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String email = inputEmail.getText().toString();
+                final String password = inputPassword.getText().toString();
+
+                if(TextUtils.isEmpty(email)){
+                    Toast.makeText(getApplicationContext(),"Email adresini gir", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (TextUtils.isEmpty(password)) {
+                    Toast.makeText(getApplicationContext(), "Enter password!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                mFirebaseAuth.signInWithEmailAndPassword(email, password)
+                        .addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                // If sign in fails, display a message to the user. If sign in succeeds
+                                // the auth state listener will be notified and logic to handle the
+                                // signed in user can be handled in the listener.
+                                if (!task.isSuccessful()) {
+                                    // there was an error
+                                    if (password.length() < 6) {
+                                        inputPassword.setError(getString(R.string.minimum_password));
+                                    } else {
+                                        Toast.makeText(MainActivity.this, getString(R.string.auth_failed), Toast.LENGTH_LONG).show();
+                                    }
+                                } else {
+                                    Intent intent = new Intent(MainActivity.this, Home.class);
+                                    startActivity(intent);
+                                    finish();
+                                }
+                            }
+                        });
+
+            }
+        });
+
+
+
     }
 
 
