@@ -22,4 +22,6 @@ public class ImageUpload {
         this.name = name;
         this.url = url;
     }
+
+    public ImageUpload(){ }
 }

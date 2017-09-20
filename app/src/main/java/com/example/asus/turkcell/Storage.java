@@ -128,4 +128,16 @@ public class Storage extends AppCompatActivity {
             Toast.makeText(getApplicationContext(),"Plesae select image",Toast.LENGTH_SHORT).show();
         }
     }
+
+
+    public  void btnShowListImage_Click(View v){
+        Intent i = new Intent(Storage.this,ProjectPhotosView.class);
+        startActivity(i);
+    }
+
+    public  void AddPP(){
+
+
+    }
+
 }

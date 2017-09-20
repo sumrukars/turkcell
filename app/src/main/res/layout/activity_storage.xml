@@ -27,6 +27,14 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Upload image"
+        android:text="Upload Image"
         android:onClick="btnUpload_Click"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Show ALl Images"
+        android:onClick="btnShowListImage_Click"/>
+
+
 </LinearLayout>
